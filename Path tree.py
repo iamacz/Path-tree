@@ -1,12 +1,12 @@
 import os  
   
-path = "C:\\Users\\Arron\\OneDrive\\Study\\Between Ideas"  
+path = ""  
   
 def list_files(startpath):  
     with open("{}\\Index.md".format(path), "w") as f:  
         for root, dirs, files in os.walk(startpath):  
             # Remove dirs[:] to prevent os.walk from visiting excluded directories  
-            dirs[:] = [d for d in dirs if d not in ['.git', '.obsidian',".trash"]]  
+            dirs[:] = [d for d in dirs if d not in ['.git',".trash"]]  
             level = root.replace(startpath, '').count(os.sep)  
             indent = '#' * (level + 1)  
             f.write('\n{} {}\n'.format(indent, os.path.basename(root)))  
@@ -17,7 +17,7 @@ def list_files(startpath):
                     if filename.endswith('.md') or filename.endswith('.canvas'):  
                         # Write the file name without extension and within brackets  
                         f.write('- [[{}]]{}\n'.format(os.path.splitext(filename)[0],
-								                      os.path.splitext(filename)[1]))
+						      os.path.splitext(filename)[1]))
                     else:  
                         f.write('- {}\n'.format(filename))  
   
